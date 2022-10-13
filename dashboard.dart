@@ -3,12 +3,13 @@ import 'package:lottie/lottie.dart';
 import 'package:thesecurityman/constants.dart';
 import 'package:thesecurityman/contents.dart';
 import 'package:thesecurityman/homepage.dart';
+import 'package:thesecurityman/onboardpage.dart';
 
-class Onboarding extends StatefulWidget {
+class Onboardpage extends StatelessWidget {
   Onboarding({Key key}) : super(key: key);
 
   @override
-  _OnboardingState createState() => _OnboardingState();
+  _OnboardpageState createState() => _OnboardpageState();
 }
 
 class _OnboardingState extends State<Onboarding> {
@@ -21,27 +22,22 @@ class _OnboardingState extends State<Onboarding> {
     super.initState();
   }
 
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
   Container builtDot(int index, BuildContext context) {
     return Container(
       height: 12,
       width: currentIndex == index ? 20 : 10,
       margin: EdgeInsets.only(right: 5),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20), color: Colors.deepOrange),
+          borderRadius: BorderRadius.circular(15), color: Colors.blue),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Fixed(
       appBar: AppBar(
         title: Text("The Security Man"),
-        backgroundColor: mainColor,
+        backgroundColor: white,
         toolbarHeight: 70,
       ),
       backgroundColor: Colors.white,
@@ -57,13 +53,7 @@ class _OnboardingState extends State<Onboarding> {
                 });
               },
               itemBuilder: (_, i) {
-                return Padding(
-                    padding: const EdgeInsets.all(30),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 5,
-                        ),
+                return Padding(20),
                         Lottie.asset(
                           contents[i].image,
                           height: 250,
@@ -97,15 +87,6 @@ class _OnboardingState extends State<Onboarding> {
                     ));
               },
             ),
-          ),
-          Container(
-               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: List.generate(
-                  contents.length,
-                      (index) => builtDot(index, context),
-                ),
-              )
           ),
           Container(
             height: 60,
