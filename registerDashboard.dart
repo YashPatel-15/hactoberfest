@@ -2,10 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:thesecurityman/Register.dart';
 import 'package:thesecurityman/constants.dart';
-import 'package:thesecurityman/homepage.dart';
-import 'package:thesecurityman/main.dart';
+import 'package:thesecurityman/maine.dart';
 
-class RegisterDashboard extends StatefulWidget {
+class RegisterDashboard extends StatelessWidget {
   @override
   _RegisterDashboardState createState() => _RegisterDashboardState();
 }
@@ -16,11 +15,11 @@ class _RegisterDashboardState extends State<RegisterDashboard> {
     var images = ["assets/Customer.jpg","assets/Splash.jpg","assets/business-partner.jpg"];
 
     return Scaffold(
-     /* appBar: AppBar(
+      appBar: AppBar(
         title: Text("The Security Man"),
         backgroundColor: Colors.deepOrange,
-        //automaticallyImplyLeading: false,
-      ), */
+        automaticallyImplyLeading: false,
+      ),
       body: SingleChildScrollView(
         child: Center(
           child: Column(
@@ -36,19 +35,11 @@ class _RegisterDashboardState extends State<RegisterDashboard> {
               SizedBox(
                 height: 40,
               ),
-              Text(
-                "Register As",
-                style: TextStyle(
-                    fontSize: 35,
-                    fontFamily: 'Hina',
-                    fontWeight: FontWeight.bold
-                ),
-              ),
+              Text("Register As"),
               SizedBox(
                 height: 50,
               ),
               RaisedButton(
-                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 120),
                 onPressed: () {
                   Navigator.push(
                       context, MaterialPageRoute(builder: (context) => Register(value: images[0])));
@@ -59,34 +50,15 @@ class _RegisterDashboardState extends State<RegisterDashboard> {
                 child: Text(
                   "Customer",
                   style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Hina'),
+                      color: Colors.orange,
+                      fontSize: 45,
+                      fontWeight: FontWeight.italic'),
                 ),
               ),
               SizedBox(
                 height: 50,
               ),
-              RaisedButton(
-                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 110),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => Register(value: images[1])));
-                },
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(30))),
-                color: mainColor,
-                child: Text(
-                  "Security Man",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Hina'),
-                ),
-              ),
+              
               SizedBox(
                 height: 50,
               ),
@@ -108,9 +80,6 @@ class _RegisterDashboardState extends State<RegisterDashboard> {
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Hina'),
                 ),
-              ),
-              SizedBox(
-                height: 40,
               ),
               TextButton(
                   onPressed: (){
