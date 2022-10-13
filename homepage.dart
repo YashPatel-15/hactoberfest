@@ -26,39 +26,10 @@ class HomePageState extends State<HomePage> {
         toolbarHeight: 70,
         //automaticallyImplyLeading: false,
       ), */
-      backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            //mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 100,
-              ),
-              Text(
-                "The Security Man",
-                style: TextStyle(fontSize: 45,fontWeight: FontWeight.bold,color: mainColor,fontFamily: 'Hina'),),
-              SizedBox(
-                height: 40,
-              ),
-              Text(
-                "Login As",
-                style: TextStyle(
-                  fontSize: 35,
-                  fontFamily: 'Hina',
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+    
               SizedBox(
                 height: 50,
-              ),
-              RaisedButton(
-                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 120),
-                onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => Login(value: images[0],identity: 'Customer',)));
-                },
+             
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(30))),
                 color: mainColor,
@@ -70,10 +41,7 @@ class HomePageState extends State<HomePage> {
                       fontWeight: FontWeight.bold,
                       fontFamily: 'Hina'),
                 ),
-              ),
-              SizedBox(
-                height: 50,
-              ),
+            
               RaisedButton(
                 padding: EdgeInsets.symmetric(vertical: 15, horizontal: 110),
                 onPressed: () {
@@ -112,27 +80,5 @@ class HomePageState extends State<HomePage> {
                       color: Colors.white,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                      fontFamily: 'Hina'),
-                ),
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              TextButton(
-                  onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => RegisterDashboard()));
-                  },
-                  child: Text(
-                    "Not Registered!",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 25,fontFamily: 'Hina',fontWeight: FontWeight.bold,
-                        decoration: TextDecoration.underline),)
-              ),
-            ],
-          ),
-        ),
-      )
-    );
   }
 }
