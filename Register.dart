@@ -9,7 +9,7 @@ import 'package:thesecurityman/constants.dart';
 import 'components/input_container.dart';
 import 'homepage.dart';
 
-class Register extends StatefulWidget{
+class Register extends StatelessWidget{
 
   Register({Key key,this.value}) : super(key: key);
 
@@ -17,6 +17,9 @@ class Register extends StatefulWidget{
 
   @override
   RegisterState createState()=> RegisterState();
+}
+
+class StatelessWidget {
 }
 class RegisterState extends State<Register>{
 
@@ -31,12 +34,24 @@ class RegisterState extends State<Register>{
 
   bool _obscureText1 = true;
   bool _obscureText2 = true;
+  bool _obscureText3 = true;
   void _toggle1() {
     setState(() {
       _obscureText1 = !_obscureText1;
     });
   }
   void _toggle2() {
+    setState(() {
+      _obscureText2 = !_obscureText2;
+    });
+  }
+  bool _obscureText2 = true;
+  void _toggle1() {
+    setState(() {
+      _obscureText1 = !_obscureText1;
+    });
+  }
+  void _toggle3() {
     setState(() {
       _obscureText2 = !_obscureText2;
     });
@@ -114,9 +129,6 @@ class RegisterState extends State<Register>{
           keyboardType: TextInputType.text,
           decoration: InputDecoration(
             labelText: "Username/Email",
-            icon: Icon(icon,color: mainColor,),
-            border: InputBorder.none,
-            focusedBorder: InputBorder.none,
             contentPadding: EdgeInsets.only(left: 1,top: 5,right: 15,bottom: 5),
           ),
           validator: (String value){
@@ -154,11 +166,11 @@ class RegisterState extends State<Register>{
             }
             if(!RegExp(r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!#%*?&]{6,15}$").hasMatch(value)){
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text("Please enter password should be 1) One Capital Letter 2) Special Character 3) One Number 4) Length Should be 6-15:"),
-                    duration: Duration(seconds: 2),
-                    backgroundColor: Color(0xFF23408e),
-                    behavior: SnackBarBehavior.fixed
-                ));
+                  content: Text("Please enter password should be 1) One Capital Letter 2) Special Character 3) One Number 4) Length Should be 6-15:"),
+                  duration: Duration(seconds: 2),
+                  backgroundColor: Color(0xFF23408e),
+                  behavior: SnackBarBehavior.fixed
+              ));
               return 'Password is too weak';
             }
             return null;
@@ -220,29 +232,12 @@ class RegisterState extends State<Register>{
       ),
     );
   }
-  
-  void signUp(String email,String password) async{
-    if(password != conPassword.text){
-      Fluttertoast.showToast(msg: "Password is not Matching");
-    }
-    else{
-      Fluttertoast.showToast(msg: "Saving Data... Redirecting to Login Page");
-      //Write code here to sent in the database
-      await _auth
-      .createUserWithEmailAndPassword(email: email, password: password)
-      .then((value) =>{
-        postDetailsToFireStore()
-      }
-      ).catchError((e)=>{
-        Fluttertoast.showToast(msg: e),
-      });
-    }
-  }
 
   postDetailsToFireStore() async {
     // Call the FireStore
     //Call the UserModel
     // sending data
+    var FirebaseFirestore;
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.instance;
     User user = _auth.currentUser;
 
@@ -254,15 +249,15 @@ class RegisterState extends State<Register>{
     userModel.phoneNum = phoneNum.text;
 
     await firebaseFirestore
-    .collection("users")
-    .doc(user.uid)
-    .set(userModel.toMap());
+        .collection("users")
+        .doc(user.uid)
+        .set(userModel.toMap());
     Fluttertoast.showToast(msg: "Account created Successfully");
 
     Navigator.pushAndRemoveUntil(
-        context, 
-        MaterialPageRoute(builder: (context)=> HomePage()), 
-        (route) => false);
+        context,
+        MaterialPageRoute(builder: (context)=> HomePage()),
+            (route) => false);
   }
 
   @override
@@ -296,9 +291,9 @@ class RegisterState extends State<Register>{
                       Text(
                         "Register As",
                         style: TextStyle(
-                          fontSize: 35,
-                          fontFamily: 'Hina',
-                          fontWeight: FontWeight.bold
+                            fontSize: 35,
+                            fontFamily: 'Hina',
+                            fontWeight: FontWeight.bold
                         ),
 
                       ),
@@ -365,5 +360,7 @@ class RegisterState extends State<Register>{
       ),
     );
   }
+
+  void setState(Null Function() param0) {}
 
 }
