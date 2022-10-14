@@ -1,32 +1,37 @@
-class Employee:						#create class “employee”
-    def __init__(self,name,age):
+# A Python program to demonstrate inheritance
+ 
+# Base or Super class. Note object in bracket.
+# (Generally, object is made ancestor of all classes)
+# In Python 3.x "class Person" is
+# equivalent to "class Person(object)"
+ 
+ 
+class Person(object):
+ 
+    # Constructor
+    def __init__(self, name):
         self.name = name
-        self.age = age
-    def employee_details(self):				#define function
-        print('Name is ' ,self.name)
-        print('Age is ',self.age)
-class Qualification:					#create class “Qualification”
-    def __init__(self,degree,college):
-        self.degree=degree
-        self.college=college
-    def qualification_details(self):
-        print('Name of degree',self.degree)
-        print('Name of college',self.college)
-class Scientist(Employee,Qualification):
-    def __init__(self,name,age,degree,college):
-        Employee.__init__(self,name,age)
-        Qualification.__init__(self,degree,college)
-        print("Scientist's Details:-")
-class Manager(Employee,Qualification):
-    def __init__(self,name,age,degree,college):
-        Employee.__init__(self,name,age)
-        Qualification.__init__(self,degree,college)
-        print('Manager\'s deatils:-')
-
-s1=Scientist('keval',20,'PHD','Oxford University')
-s1.employee_details()
-s1.qualification_details()
-
-m1=Manager('Herry',35,'MBA','Parul university')
-m1.employee_details()
-m1.qualification_details()
+ 
+    # To get name
+    def getName(self):
+        return self.name
+ 
+    # To check if this person is an employee
+    def isEmployee(self):
+        return False
+ 
+ 
+# Inherited or Subclass (Note Person in bracket)
+class Employee(Person):
+ 
+    # Here we return true
+    def isEmployee(self):
+        return True
+ 
+ 
+# Driver code
+emp = Person("Geek1")  # An Object of Person
+print(emp.getName(), emp.isEmployee())
+ 
+emp = Employee("Geek2")  # An Object of Employee
+print(emp.getName(), emp.isEmployee())
